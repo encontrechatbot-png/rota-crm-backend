@@ -1,39 +1,20 @@
-const express = require('express');
-
+const express = require("express");
 const app = express();
-const PORT = 3000;
 
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send('ROTA CRM BACKEND OK 🚀');
+// ROTA PRINCIPAL
+app.get("/", (req, res) => {
+  res.send("ROTA CRM BACKEND OK 🚀");
 });
 
-app.get('/api/status', (req, res) => {
-  res.json({
-    status: 'online',
-    sistema: 'ROTA CRM CONTÁBIL',
-    versao: '1.0.0'
-  });
+// ROTA DE TESTE
+app.get("/teste", (req, res) => {
+  res.json({ status: "ok" });
 });
 
-app.get('/api/clientes', (req, res) => {
-  res.json([
-    {
-      id: 1,
-      nome: 'Empresa Alpha',
-      cnpj: '00.000.000/0001-00',
-      status: 'em_dia'
-    },
-    {
-      id: 2,
-      nome: 'Empresa Beta',
-      cnpj: '11.111.111/0001-11',
-      status: 'pendente'
-    }
-  ]);
-});
+// PORTA DINÂMICA (OBRIGATÓRIO NO RAILWAY)
+const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+// SUBIR SERVIDOR
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
