@@ -1,17 +1,23 @@
-{
-  "name": "rota-crm-backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "express": "^5.2.1"
-  }
-}
+const express = require("express");
+const app = express();
+
+// middleware básico
+app.use(express.json());
+
+// rota principal
+app.get("/", (req, res) => {
+  res.send("ROTA CRM BACKEND OK 🚀");
+});
+
+// rota teste
+app.get("/teste", (req, res) => {
+  res.json({ status: "ok" });
+});
+
+// porta obrigatória
+const PORT = process.env.PORT || 3000;
+
+// start server
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
